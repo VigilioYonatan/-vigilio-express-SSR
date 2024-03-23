@@ -1,0 +1,40 @@
+version: "3.8"
+services:
+    server:
+        container_name: server
+        restart: always
+        ports:
+            - ${PORT}:${PORT}
+        build:
+            context: .
+            target: ${NODE_ENV}
+            no_cache: true
+        environment:
+            NODE_ENV: ${NODE_ENV}
+            PORT: ${PORT}
+            DB_HOST: ${DB_HOST}
+            DB_PORT: ${DB_PORT}
+            DB_USER: ${DB_USER}
+            DB_PASS: ${DB_PASS}
+            DB_NAME: ${DB_NAME}
+            SECRET_SESSION_KEY: ${SECRET_SESSION_KEY}
+            VITE_URL: ${VITE_URL}
+            VITE_PORT: ${VITE_PORT}
+            VITE_VIGILIO_WEB: ${VITE_VIGILIO_WEB}
+            VITE_VIGILIO_TOKEN: ${VITE_VIGILIO_TOKEN}
+        depends_on:
+            - db
+    db:
+        container_name: db
+        image: postgres:alpine3.19
+        restart: always
+        ports:
+            - 5432:5432
+        environment:
+            POSTGRES_USER: ${DB_USER}
+            POSTGRES_PASSWORD: ${DB_PASS}
+            POSTGRES_DB: ${DB_NAME}
+        volumes:
+            - postgres-data:/var/lib/postgresql/data
+volumes:
+    postgres-data:

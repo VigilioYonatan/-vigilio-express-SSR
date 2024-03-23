@@ -1,0 +1,41 @@
+{
+    "compilerOptions": {
+        "allowJs": true,
+        "alwaysStrict": true,
+        "allowSyntheticDefaultImports": true,
+        "baseUrl": ".",
+        "checkJs": true,
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+        "strictPropertyInitialization": false,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+        "removeComments": true,
+        "incremental": true,
+        "jsx": "react-jsxdev",
+        "lib": ["DOM", "DOM.Iterable", "ESNext"],
+        "strict": true,
+        "noImplicitAny": true,
+        "verbatimModuleSyntax": true,
+        "noUnusedParameters": true,
+        "skipLibCheck": false,
+        "outDir": "dist",
+        "module": "ESNext",
+        "moduleResolution": "Node",
+        "sourceMap": false,
+        "target": "ES2017",
+        "paths": {
+            "@/*": ["./app/services/*"],
+            "~/*": ["./app/*"]
+        }
+    },
+    "include": [
+        "app",
+        "vitest.config.ts",
+        "app/config/server.ts",
+        "app/main.ts"
+    ],
+    "exclude": ["node_modules", "dist", "vite.config.ts"]
+}

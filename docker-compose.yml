@@ -1,0 +1,28 @@
+version: "3.8"
+services:
+    server:
+        container_name: server
+        restart: always
+        ports:
+            - ${PORT}:${PORT}
+        volumes:
+            - ./:/usr/src/app
+            - /usr/src/app/node_modules
+        build:
+            context: .
+            target: ${NODE_ENV}
+            dockerfile: Dockerfile
+    db:
+        container_name: db
+        image: postgres:alpine3.19
+        restart: always
+        ports:
+            - ${DB_PORT}:5432
+        environment:
+            POSTGRES_USER: ${DB_USER}
+            POSTGRES_PASSWORD: ${DB_PASS}
+            POSTGRES_DB: ${DB_NAME}
+        volumes:
+            - postgres-data:/var/lib/postgresql/data
+volumes:
+    postgres-data:
